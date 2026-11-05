@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Al-Qur'an</title><link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#22b36b"><link rel="apple-touch-icon" href="icons/icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
+<style>
+:root{--g:#22b36b;--gd:#146e45;--mint:#e3f7ea;--bg:#f7fcf8;--card:#fff;--ink:#213f33;--mut:#6b8076;--gold:#dfb85c}
+[data-t=dark]{--g:#2ec275;--gd:#80dea6;--mint:#1c382b;--bg:#0d1712;--card:#162720;--ink:#e8f5ec;--mut:#8fa89b}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px system-ui,sans-serif;padding-bottom:calc(70px + env(safe-area-inset-bottom))}
+#v{max-width:640px;margin:auto;padding:calc(16px + env(safe-area-inset-top)) 16px 16px}
+h1{margin:0 0 4px;color:var(--gd);font-size:26px}h2{font-size:18px;margin:18px 0 8px}
+.card{background:var(--card);border-radius:20px;padding:18px;margin:14px 0;box-shadow:0 4px 14px rgba(34,179,107,.13)}
+.mut{color:var(--mut);font-size:14px}.row{display:flex;gap:10px;align-items:center;justify-content:space-between}
+button,select,input{font:inherit;color:inherit}
+.btn{background:var(--mint);color:var(--gd);border:0;border-radius:12px;padding:9px 14px;font-weight:600}
+.btn.p{background:var(--g);color:#fff}
+nav{position:fixed;bottom:0;left:0;right:0;display:flex;background:var(--card);border-top:1px solid var(--mint);padding-bottom:env(safe-area-inset-bottom)}
+nav button{flex:1;border:0;background:none;padding:10px 0;font-size:11px;color:var(--mut)}nav button b{display:block;font-size:20px}nav .on{color:var(--g)}
+.li{display:flex;gap:12px;align-items:center;padding:12px 4px;border-bottom:1px solid var(--mint);cursor:pointer}
+.num{background:var(--mint);color:var(--gd);border-radius:50%;min-width:34px;height:34px;display:grid;place-items:center;font-size:12px;font-weight:700}
+.ay{padding:14px 4px;border-bottom:1px solid var(--mint)}.ay.on{background:var(--mint);border-radius:12px}
+.ar{text-align:right;direction:rtl;line-height:1.9;margin:8px 0}.tl{font-style:italic;color:var(--gd)}
+.bis{text-align:center;background:var(--mint);border:1px solid rgba(34,179,107,.25);border-radius:18px;padding:16px;margin:10px 0}
+.seg{display:flex;background:var(--mint);border-radius:12px;padding:3px}.seg button{flex:1;border:0;background:none;padding:8px;border-radius:10px;color:var(--gd)}.seg .on{background:var(--g);color:#fff}
+#bar{position:fixed;left:0;right:0;bottom:calc(58px + env(safe-area-inset-bottom));background:var(--card);box-shadow:0 -2px 10px rgba(0,0,0,.1);padding:10px 16px;display:none;align-items:center;gap:12px;max-width:640px;margin:auto}
+input[type=range],input[type=text],select{width:100%}input[type=text],select{padding:9px;border-radius:10px;border:1px solid var(--mint);background:var(--card)}
+.big{font-size:34px;font-weight:700;color:var(--g);font-variant-numeric:tabular-nums}.err{color:#d33;padding:20px 0}
+#cp{width:260px;height:260px;border:6px solid var(--mut);border-radius:50%;margin:20px auto;position:relative}#cp.ok{border-color:var(--g)}
+#ndl{position:absolute;inset:0;transition:transform .15s}#ndl:before{content:"";position:absolute;left:50%;top:14px;margin-left:-8px;border:8px solid transparent;border-bottom:44px solid var(--g);border-top:0}
+#ndl:after{content:"";position:absolute;left:50%;top:58px;width:6px;height:90px;margin-left:-3px;background:var(--g);border-radius:3px}
+</style></head><body><div id="v"></div>
+<div id="bar"><button class="btn p" id="pp" onclick="tgl()">▶</button><span id="bl" class="mut" style="flex:1"></span><button class="btn" onclick="stp()">■</button></div>
+<nav id="nav"></nav>
+<script>
+const API='https://api.islamic.app',CDN='https://cdn.islamic.app/quran/audio',KEY='' /* opsional; terlihat publik di GitHub Pages */;
+const $=s=>document.querySelector(s),D={name:'',theme:'system',ar:30,tr:15,showTr:1,showTl:0,arF:0,laF:0,rec:'ar.alafasy',spd:1,rep:'off',auto:1,ntf:[]};
+let S={...D,...JSON.parse(localStorage.q||'{}')};const sv=()=>localStorage.q=JSON.stringify(S);
+const AF=[["Naskh","'Noto Naskh Arabic','Geeza Pro','Traditional Arabic',serif"],["Damascus","Damascus,'Geeza Pro',serif"],["Sans","'Al Nile','Noto Sans Arabic',sans-serif"]],LF=[["Sistem","system-ui,sans-serif"],["Serif","Georgia,serif"],["Rounded","ui-rounded,'Trebuchet MS',sans-serif"]];
+const REC=[["ar.alafasy","Mishary Alafasy"],["ar.abdurrahmaansudais","As-Sudais"],["ar.saoodshuraym","Saud Ash-Shuraim"],["ar.mahermuaiqly","Maher Al-Muaiqly"],["ar.abdulbasitmurattal","Abdul Basit"],["ar.husary","Al-Husary"],["ar.minshawi","Al-Minshawi"],["ar.hudhaify","Al-Hudhaify"],["ar.hanirifai","Hani Ar-Rifai"],["ar.shaatree","Ash-Shaatree"],["ar.ahmedajamy","Al-Ajamy"],["ar.abdullahbasfar","Basfar"]];
+const Q=[["Allah tidak membebani seseorang melainkan sesuai dengan kesanggupannya.","QS. Al-Baqarah: 286","Al-Qur'an"],["Karena sesungguhnya sesudah kesulitan itu ada kemudahan.","QS. Al-Insyirah: 5","Al-Qur'an"],["Ingatlah, hanya dengan mengingat Allah hati menjadi tenteram.","QS. Ar-Ra'd: 28","Al-Qur'an"],["Maka ingatlah kepada-Ku, niscaya Aku ingat kepadamu.","QS. Al-Baqarah: 152","Al-Qur'an"],["Sesungguhnya setiap amalan tergantung pada niatnya.","HR. Bukhari & Muslim","Hadis"],["Barangsiapa beriman kepada Allah dan hari akhir, hendaklah ia berkata baik atau diam.","HR. Bukhari & Muslim","Hadis"],["Senyummu di hadapan saudaramu adalah sedekah.","HR. Tirmidzi","Hadis"],["Permudahlah dan jangan mempersulit, berilah kabar gembira dan jangan membuat orang lari.","HR. Bukhari & Muslim","Hadis"]];
+function rng(a){return()=>{a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+function daily(){const d=Math.floor((Date.now()-new Date().getTimezoneOffset()*6e4)/864e5),n=Q.length,r=rng(Math.floor(d/n)),a=[...Q];for(let i=n-1;i>0;i--){const j=Math.floor(r()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a[d%n]}
+let HQ=null;const hq=()=>HQ||(HQ=daily());
+function theme(){document.documentElement.dataset.t=S.theme=='system'?(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'):S.theme}
+async function api(p,q={}){const u=new URL(API+p);for(const k in q)u.searchParams.set(k,q[k]);const r=await fetch(u,{headers:KEY?{'X-Api-Key':KEY}:{}});if(!r.ok)throw Error('Server '+r.status);return(await r.json()).data}
+let TR;async function trs(){if(TR)return TR;const l=(await api('/v1/resources/translations',{iso_code:'id'})).translations,pl=l.filter(x=>!/translit/i.test(x.slug));let t=l.find(x=>/translit/i.test(x.slug));if(!t)try{t=(await api('/v1/resources/translations',{iso_code:'en'})).translations.find(x=>/translit/i.test(x.slug))}catch{}return TR={a:pl.find(x=>/ministry|kemenag/.test(x.slug))||pl[0],t}}
+async function verses(path,pp){let r={a:null,t:null};try{r=await trs()}catch{}const sl=[r.a,r.t].filter(Boolean).map(x=>x.slug).join(','),out=[];let pg=1;
+while(pg<=40){const q={fields:'text_uthmani',page:pg};if(pp)q.per_page=pp;if(sl)q.translations=sl;const d=await api(path,q);
+for(const v of d.verses){const[s,n]=v.verse_key.split(':').map(Number);let tr='',tl='';for(const t of v.translations||[]){const x=(t.text||'').replace(/<sup[^>]*>.*?<\/sup>/g,'').replace(/<[^>]+>/g,'').trim(),id=String(t.resource_id);
+if(r.t&&id==String(r.t.id))tl=x;else if(r.a&&id==String(r.a.id))tr=x;else if(!tr&&r.a)tr=x;else tl=x}
+out.push({id:v.id,s,n,ar:v.text_uthmani||'',tr,tl})}
+const p=d.pagination;if(p&&p.next_page)pg=p.next_page;else if(p&&p.total_pages>pg)pg++;else break}return out}
+let tab='home',SUR=[],CUR=null,AY=[];
+const TABS=[['home','🏠','Beranda'],['quran','📖',"Al-Qur'an"],['sholat','🕌','Sholat'],['kiblat','🧭','Kiblat'],['set','⚙️','Atur']];
+function go(t){tab=t;CUR=null;$('#nav').innerHTML=TABS.map(x=>`<button class="${x[0]==tab?'on':''}" onclick="go('${x[0]}')"><b>${x[1]}</b>${x[2]}</button>`).join('');$('#bar').style.display=au.src&&tab=='quran'?'flex':'none';scrollTo(0,0);({home,quran,sholat,kiblat,set}[t])()}
+const ge=()=>{const h=new Date().getHours();return h<4?'Selamat malam':h<11?'Selamat pagi':h<15?'Selamat siang':h<18?'Selamat sore':'Selamat malam'};
+function hikmah(){const q=hq();return`<div class="card"><div class="row"><span class="mut">Hikmah hari ini</span><span class="num" style="border-radius:20px;padding:0 10px;font-size:11px">${q[2]}</span></div><p style="font-size:19px;text-align:center;margin:16px 0">“${q[0]}”</p><p class="mut" style="text-align:center">${q[1]}</p><div class="row" style="justify-content:center"><button class="btn" onclick="rq()">🔀 Acak</button><button class="btn" onclick="shq()">Bagikan</button></div></div>`}
+function rq(){HQ=Q[Math.floor(Math.random()*Q.length)];home()}
+function shq(){const q=hq(),t=`“${q[0]}” — ${q[1]}`;navigator.share?navigator.share({text:t}):navigator.clipboard.writeText(t)}
+function home(){const hj=new Intl.DateTimeFormat('id-u-ca-islamic-umalqura',{dateStyle:'long'}).format(),gr=new Intl.DateTimeFormat('id',{dateStyle:'full'}).format();
+$('#v').innerHTML=`<h1>🌙 Assalamu'alaikum${S.name?', '+S.name:''}</h1><div class="mut">${ge()} • ${gr}<br>${hj}</div>${hikmah()}<div class="card" id="np" onclick="go('sholat')"><span class="mut">Waktu sholat berikutnya</span><div id="npc">Memuat…</div></div>
+<div class="row"><button class="btn" style="flex:1" onclick="go('quran')">📖 Al-Qur'an</button><button class="btn" style="flex:1" onclick="go('sholat')">🕌 Sholat</button><button class="btn" style="flex:1" onclick="go('kiblat')">🧭 Kiblat</button></div>`;pt().then(tick)}
+let PT=null;const PN={Fajr:'Subuh',Dhuhr:'Zuhur',Asr:'Asar',Maghrib:'Magrib',Isha:'Isya'};
+function pos(){return new Promise(r=>navigator.geolocation?navigator.geolocation.getCurrentPosition(p=>r(p.coords),()=>r({latitude:-6.2088,longitude:106.8456}),{timeout:8000}):r({latitude:-6.2088,longitude:106.8456}))}
+async function pt(){if(PT)return PT;const c=await pos(),d=new Date(),f=`${String(d.getDate()).padStart(2,0)}-${String(d.getMonth()+1).padStart(2,0)}-${d.getFullYear()}`;
+try{const t=(await api('/v1/timings/'+f,{latitude:c.latitude,longitude:c.longitude,timezone:Intl.DateTimeFormat().resolvedOptions().timeZone})).timings;PT=Object.keys(PN).map(k=>{const[h,m]=t[k].slice(0,5).split(':'),x=new Date();x.setHours(+h,+m,0,0);return[k,x]});sched();return PT}catch(e){return null}}
+function sched(){if(!PT||Notification.permission!='granted')return;PT.forEach(([k,d])=>{const w=d-Date.now();if(w>0&&S.ntf.includes(k))setTimeout(()=>new Notification('Waktu '+PN[k],{body:'Sudah masuk waktu '+PN[k]+'. Yuk sholat.',icon:'icons/icon-192.png'}),w)})}
+const f2=s=>[s/3600|0,s%3600/60|0,s%60].map(x=>String(x).padStart(2,0)).join(':');
+function tick(){clearInterval(window.ti);const run=()=>{const e=$('#npc'),w=$('#cdw');if(!PT){e&&(e.textContent='Jadwal belum tersedia');return}const n=PT.find(x=>x[1]>Date.now());const h=n?`<b style="font-size:20px">${PN[n[0]]}</b><div class="big">${f2(Math.floor((n[1]-Date.now())/1e3))}</div>`:'Semua waktu hari ini sudah lewat';if(e)e.innerHTML=h;if(w)w.innerHTML=h};run();window.ti=setInterval(run,1000)}
+async function sholat(){$('#v').innerHTML=`<h1>Waktu Sholat</h1><div class="card" id="cdw">Memuat…</div><div class="card" id="pl"></div><p class="mut">Pengingat hanya berbunyi saat web app terbuka (batasan web). Aktifkan notifikasi saat diminta.</p>`;
+const t=await pt();if(!t){$('#pl').innerHTML='<div class="err">Gagal memuat jadwal (cek internet/CORS API).</div>';return}tick();
+$('#pl').innerHTML=t.map(([k,d])=>`<div class="row" style="padding:10px 0"><b>${PN[k]}</b><span>${d.toLocaleTimeString('id',{hour:'2-digit',minute:'2-digit'})}</span><input type="checkbox" ${S.ntf.includes(k)?'checked':''} onchange="nt('${k}',this.checked)"></div>`).join('')}
+async function nt(k,on){if(on&&Notification.permission!='granted'&&await Notification.requestPermission()!='granted')return sholat();S.ntf=S.ntf.filter(x=>x!=k);if(on)S.ntf.push(k);sv();sched()}
+async function quran(){$('#v').innerHTML=`<h1>Al-Qur'an</h1><div class="seg" id="sg"><button class="on" onclick="lst(0)">Surah</button><button onclick="lst(1)">Juz</button></div><input type="text" id="sq" placeholder="Cari surah" oninput="lst(window.jz)" style="margin:12px 0"><div id="ls">Memuat…</div>`;
+if(!SUR.length)try{SUR=(await api('/v1/chapters',{language:'id'})).chapters}catch(e){$('#ls').innerHTML='<div class="err">Gagal memuat: '+e.message+'</div>';return}lst(0)}
+function lst(j){window.jz=j;const q=($('#sq').value||'').toLowerCase();document.querySelectorAll('#sg button').forEach((b,i)=>b.className=i==j?'on':'');$('#sq').style.display=j?'none':'';
+$('#ls').innerHTML=j?[...Array(30)].map((_,i)=>`<div class="li" onclick="op('juz',${i+1})"><b>Juz ${i+1}</b></div>`).join(''):SUR.filter(s=>(s.name_simple+(s.translated_name?.name||'')).toLowerCase().includes(q)).map(s=>`<div class="li" onclick="op('s',${s.id})"><span class="num">${s.id}</span><div style="flex:1"><b>${s.name_simple}</b><div class="mut">${s.translated_name?.name||''} • ${s.verses_count} ayat</div></div><span style="font-size:22px">${s.name_arabic}</span></div>`).join('')}
+async function op(t,n){CUR=[t,n];$('#v').innerHTML=`<button class="btn" onclick="quran()">← Kembali</button><h1 style="margin-top:12px">${t=='s'?SUR.find(x=>x.id==n).name_simple:'Juz '+n}</h1><div id="ay">Memuat…</div>`;
+try{AY=await verses(t=='s'?'/v1/verses/by_chapter/'+n:'/v1/verses/by_juz/'+n,t=='s'?0:50)}catch(e){$('#ay').innerHTML='<div class="err">Gagal memuat: '+e.message+'</div>';return}rd()}
+function rd(){const af=AF[S.arF][1],lf=LF[S.laF][1];$('#ay').innerHTML=AY.map((a,i)=>`${a.n==1&&a.s!=1&&a.s!=9?`<div class="bis"><div class="ar" style="text-align:center;font:${S.ar+2}px ${af}">بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</div>${S.showTr?`<div class="mut" style="font-size:${S.tr}px">Dengan nama Allah Yang Maha Pengasih, Maha Penyayang.</div>`:''}</div>`:''}
+<div class="ay" id="a${a.id}"><div class="row"><span class="num" style="border-radius:20px;padding:0 10px">${CUR[0]=='juz'?a.s+':':''}${a.n}</span><button class="btn" onclick="pl(${i})">▶</button></div><div class="ar" style="font:${S.ar}px/1.9 ${af}">${a.ar}</div>${S.showTl&&a.tl?`<div class="tl" style="font:italic ${S.tr}px ${lf}">${a.tl}</div>`:''}${S.showTr&&a.tr?`<div class="mut" style="font:${S.tr}px ${lf}">${a.tr}</div>`:''}</div>`).join('')}
+const au=new Audio();let qi=0;au.onended=()=>{if(S.rep=='ayah')return pl(qi);if(qi+1<AY.length)pl(qi+1);else if(S.rep=='all')pl(0);else stp()};au.onplay=au.onpause=()=>$('#pp').textContent=au.paused?'▶':'⏸';
+function pl(i){qi=i;const a=AY[i];au.src=`${CDN}/${S.rec}/${a.id}.mp3`;au.defaultPlaybackRate=S.spd;au.play();$('#bar').style.display='flex';$('#bl').textContent=`QS ${a.s}:${a.n} • ${REC.find(r=>r[0]==S.rec)[1]}`;document.querySelectorAll('.ay.on').forEach(e=>e.classList.remove('on'));const e=$('#a'+a.id);if(e){e.classList.add('on');S.auto&&e.scrollIntoView({behavior:'smooth',block:'center'})}}
+function tgl(){au.paused?au.play():au.pause()}function stp(){au.pause();au.removeAttribute('src');$('#bar').style.display='none';document.querySelectorAll('.ay.on').forEach(e=>e.classList.remove('on'))}
+let H=0,QB=null;const qbf=(la,lo)=>{const r=Math.PI/180,k=[21.4225*r,39.8262*r],p=la*r,d=k[1]-lo*r;return(Math.atan2(Math.sin(d)*Math.cos(k[0]),Math.cos(p)*Math.sin(k[0])-Math.sin(p)*Math.cos(k[0])*Math.cos(d))/r+360)%360};
+async function kiblat(){$('#v').innerHTML=`<h1>Arah Kiblat</h1><div id="cp"><div id="ndl"></div></div><p id="kt" style="text-align:center;font-weight:600">Mencari lokasi…</p><p class="mut" style="text-align:center">Jauhkan dari benda logam/magnet. Kalibrasi gerakan angka 8 jika kurang akurat.</p><div style="text-align:center"><button class="btn p" onclick="cmp()">Aktifkan kompas</button></div>`;const c=await pos();QB=qbf(c.latitude,c.longitude);$('#kt').textContent='Arah kiblat: '+Math.round(QB)+'° dari utara';nd()}
+function nd(){if(QB==null||!$('#ndl'))return;let d=((QB-H)%360+540)%360-180;$('#ndl').style.transform=`rotate(${d}deg)`;$('#cp').className=Math.abs(d)<3?'ok':'';if(Math.abs(d)<3)$('#kt').textContent='Kamu menghadap kiblat ✓'}
+async function cmp(){if(window.DeviceOrientationEvent&&DeviceOrientationEvent.requestPermission&&await DeviceOrientationEvent.requestPermission()!='granted')return;const h=e=>{H=e.webkitCompassHeading??(e.alpha!=null?360-e.alpha:0);nd()};addEventListener('deviceorientationabsolute',h,true);addEventListener('deviceorientation',e=>{if(e.webkitCompassHeading!=null)h(e)},true)}
+function set(){const o=(a,v)=>a.map((x,i)=>`<option value="${Array.isArray(x)?x[0]:i}" ${(Array.isArray(x)?x[0]:i)==v?'selected':''}>${Array.isArray(x)?x[1]||x[0]:x}</option>`).join('');
+const rg=(k,mn,mx,l)=>`<div class="row"><span>${l}</span><span class="mut" id="v_${k}">${S[k]}</span></div><input type="range" min="${mn}" max="${mx}" value="${S[k]}" oninput="ss('${k}',+this.value)">`;
+$('#v').innerHTML=`<h1>Pengaturan</h1><div class="card"><h2>Profil</h2><input type="text" placeholder="Nama panggilan" value="${S.name}" oninput="ss('name',this.value,1)"></div>
+<div class="card"><h2>Tampilan</h2><select onchange="ss('theme',this.value,1);theme()">${o([['system','Ikuti sistem'],['light','Terang'],['dark','Gelap']],S.theme)}</select></div>
+<div class="card"><h2>Bacaan</h2><div id="pv"></div>${rg('ar',22,52,'Ukuran teks Arab')}${rg('tr',12,26,'Ukuran terjemahan')}<p>Font Arab<select onchange="ss('arF',+this.value)">${o(AF.map((x,i)=>[i,x[0]]),S.arF)}</select></p><p>Font terjemahan<select onchange="ss('laF',+this.value)">${o(LF.map((x,i)=>[i,x[0]]),S.laF)}</select></p>
+<label class="row"><span>Tampilkan terjemahan</span><input type="checkbox" ${S.showTr?'checked':''} onchange="ss('showTr',+this.checked)"></label><label class="row"><span>Tampilkan transliterasi</span><input type="checkbox" ${S.showTl?'checked':''} onchange="ss('showTl',+this.checked)"></label><label class="row"><span>Gulir otomatis saat audio</span><input type="checkbox" ${S.auto?'checked':''} onchange="ss('auto',+this.checked)"></label></div>
+<div class="card"><h2>Audio</h2><p>Qori<select onchange="ss('rec',this.value,1)">${o(REC,S.rec)}</select></p><p>Kecepatan<select onchange="ss('spd',+this.value,1);au.defaultPlaybackRate=au.playbackRate=S.spd">${o([[.75,'0.75×'],[1,'1×'],[1.25,'1.25×'],[1.5,'1.5×']],S.spd)}</select></p><p>Ulangi<select onchange="ss('rep',this.value,1)">${o([['off','Tidak'],['ayah','Satu ayat'],['all','Semua']],S.rep)}</select></p></div>
+<p class="mut">Sumber data: islamic.app API</p>`;pv()}
+function ss(k,v,q){S[k]=v;sv();const e=$('#v_'+k);if(e)e.textContent=v;if(!q)pv()}
+function pv(){const e=$('#pv');if(e)e.innerHTML=`<div class="ay"><div class="ar" style="font:${S.ar}px/1.9 ${AF[S.arF][1]}">ٱلْحَمْدُ لِلَّهِ رَبِّ ٱلْعَـٰلَمِينَ</div>${S.showTl?`<div class="tl" style="font:italic ${S.tr}px ${LF[S.laF][1]}">Al-ḥamdu lillāhi rabbil-ʿālamīn</div>`:''}${S.showTr?`<div class="mut" style="font:${S.tr}px ${LF[S.laF][1]}">Segala puji bagi Allah, Tuhan seluruh alam.</div>`:''}</div>`}
+theme();matchMedia('(prefers-color-scheme:dark)').addEventListener('change',theme);go('home');
+if('serviceWorker'in navigator)addEventListener('load',()=>navigator.serviceWorker.register('sw.js'));
+</script></body></html>
