@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Al-Qur'an</title><link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#22b36b"><link rel="apple-touch-icon" href="icons/icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
+<style>
+:root{--bg:#f3f7f4;--ink:#12251c;--mut:#5e7268;--ln:#cbd9d0;--blk:#0e4a35;--onb:#f3f7f4;--g:#1fa866;--soft:#e2ede6;--serif:Charter,"Bitstream Charter","Sitka Text",Cambria,"Noto Serif",serif;--sans:"Avenir Next","Segoe UI","Helvetica Neue",Roboto,sans-serif}
+[data-t=dark]{--bg:#0b1410;--ink:#e6efe9;--mut:#8ca297;--ln:#22332a;--blk:#12382a;--onb:#e6efe9;--g:#3bcb8b;--soft:#13221a}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 var(--sans);padding-bottom:calc(76px + env(safe-area-inset-bottom))}
+#v{max-width:680px;margin:auto;padding:calc(56px + env(safe-area-inset-top)) 20px 40px}#v.h{padding-top:0}
+h1{font:400 clamp(44px,12vw,72px)/.92 var(--serif);letter-spacing:-.045em;margin:0 0 36px}
+h2{font:400 22px/1.2 var(--serif);letter-spacing:-.01em;margin:0 0 16px}
+.lb{font-size:12.5px;color:var(--mut);margin:0}.mut{color:var(--mut);font-size:13px}
+.hero{background:var(--blk);color:var(--onb);margin:0 -20px;padding:calc(72px + env(safe-area-inset-top)) 20px 44px;border-radius:0 0 0 64px}
+.hero .lb{color:inherit;opacity:.7}.hero h1{font-size:clamp(40px,11.2vw,84px);margin:28px 0 14px}.hero .sub{margin:0 0 56px;font-size:15px;opacity:.8}
+.cd{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin:0 0 22px}.cd span{font:400 20px var(--serif)}
+.cd b{font:400 clamp(40px,12vw,64px)/1 var(--serif);letter-spacing:-.04em;font-variant-numeric:tabular-nums;color:var(--g)}.hero .cd b{color:inherit}
+.tb{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;font-size:13px}.tb th{font-weight:500;text-align:left;padding:8px 0;opacity:.65;border-bottom:1px solid rgba(255,255,255,.25)}.tb td{padding:10px 0}.tb .nx{font-weight:800;color:var(--g)}[data-t=light] .tb .nx{color:#7ff0b5}
+.qt{margin:96px 0 0;padding-left:20px;border-left:4px solid var(--g)}
+blockquote{font:400 clamp(25px,6.6vw,36px)/1.18 var(--serif);letter-spacing:-.025em;margin:14px 0 22px;text-wrap:balance}
+.card{margin:88px 0 0}.card:first-of-type{margin-top:28px}.sec{margin:0}
+.btn{display:inline-flex;gap:7px;align-items:center;background:var(--soft);color:var(--ink);border:0;border-radius:8px;padding:10px 13px;font:600 13px/1 var(--sans)}.btn.p{background:var(--g);color:#06241a}.btn.ic{padding:9px}
+.i{width:19px;height:19px;flex:none}
+.bento{display:grid;grid-template-columns:2fr 1fr;gap:10px;margin-top:96px}
+.bento a{background:var(--soft);border-radius:6px;padding:18px;display:flex;flex-direction:column;gap:6px;cursor:pointer;min-height:112px;justify-content:flex-end}
+.bento .b1{grid-row:span 2;min-height:240px;border-radius:40px 6px 6px 6px;justify-content:space-between}
+.bento b{font:400 23px/1 var(--serif);letter-spacing:-.02em}.bento .b1 b{font-size:40px;letter-spacing:-.04em}.bento small{color:var(--mut);font-size:12.5px;line-height:1.35}.bento .b1 .i{width:42px;height:42px;color:var(--g);stroke-width:1.2}
+nav{position:fixed;bottom:0;left:0;right:0;display:flex;background:var(--bg);border-top:1px solid var(--ln);padding-bottom:env(safe-area-inset-bottom)}
+nav button{flex:1;border:0;background:none;padding:11px 0 9px;font:500 11px var(--sans);color:var(--mut);display:flex;flex-direction:column;align-items:center;gap:4px;box-shadow:inset 0 2px 0 transparent}nav .on{color:var(--ink);box-shadow:inset 0 2px 0 var(--g)}
+.li{display:grid;grid-template-columns:40px 1fr auto;gap:8px;align-items:center;padding:17px 0;border-bottom:1px solid var(--ln);cursor:pointer}
+.num{font-size:13px;color:var(--mut);font-variant-numeric:tabular-nums}.li b{font:400 21px var(--serif);letter-spacing:-.015em}.ara{font-size:24px}
+.seg{display:flex;gap:26px;border-bottom:1px solid var(--ln);margin-bottom:6px}.seg button{border:0;background:none;padding:8px 0;font:600 14px var(--sans);color:var(--mut);margin-bottom:-1px;border-bottom:3px solid transparent}.seg .on{color:var(--ink);border-color:var(--g)}
+.ay{display:grid;grid-template-columns:56px 1fr;gap:6px;padding:28px 0 28px 12px;border-bottom:1px solid var(--ln);border-left:4px solid transparent}.ay.on{border-left-color:var(--g);background:linear-gradient(90deg,var(--soft),transparent)}
+.gt{display:flex;flex-direction:column;gap:12px;align-items:flex-start}.gt .num{font-weight:700;color:var(--ink)}
+.ar{text-align:right;direction:rtl;line-height:1.9;margin:0 0 12px}.tl{color:var(--mut)}
+.bis{text-align:center;padding:30px 0;margin:40px 0 4px;border-top:4px double var(--ln);border-bottom:4px double var(--ln)}
+.pr{display:grid;grid-template-columns:1fr auto 40px;align-items:center;padding:18px 0;border-bottom:1px solid var(--ln)}.pr b{font:400 26px var(--serif);letter-spacing:-.02em}.pr span{font-variant-numeric:tabular-nums}.pr input{justify-self:end}
+#bar{position:fixed;left:0;right:0;bottom:calc(60px + env(safe-area-inset-bottom));background:var(--blk);color:var(--onb);padding:10px 16px;display:none;align-items:center;gap:12px;max-width:680px;margin:auto}#bar .btn{background:rgba(255,255,255,.14);color:inherit}#bar .btn.p{background:var(--g);color:#06241a}
+input[type=text],select{width:100%;padding:12px 0;border:0;border-bottom:1px solid var(--ink);border-radius:0;background:transparent;color:var(--ink);font:17px var(--serif)}
+input[type=range]{width:100%;accent-color:var(--g)}input[type=checkbox]{accent-color:var(--g);width:21px;height:21px}
+p{margin:14px 0}.row{display:flex;gap:10px;align-items:center;justify-content:space-between}label.row{padding:8px 0}.err{color:#c0392b;padding:20px 0}
+#cp{width:min(290px,78vw);aspect-ratio:1;border:2px solid var(--ink);border-radius:50%;margin:40px auto;position:relative;background:repeating-conic-gradient(var(--ink) 0 .7deg,transparent .7deg 15deg)}
+#cp:before{content:"";position:absolute;inset:16px;border-radius:50%;background:var(--bg)}#cp.ok{border-color:var(--g)}
+#ndl{position:absolute;inset:0;transition:transform .15s}#ndl:before{content:"";position:absolute;left:50%;top:34px;margin-left:-8px;border:8px solid transparent;border-bottom:38px solid var(--g);border-top:0}
+#ndl:after{content:"";position:absolute;left:50%;top:72px;width:2px;height:70px;margin-left:-1px;background:var(--ink)}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--g);outline-offset:2px}
+</style></head><body><div id="v"></div>
+<div id="bar"><button class="btn p ic" id="pp" onclick="tgl()" aria-label="Putar atau jeda"></button><span id="bl" class="mut" style="flex:1"></span><button class="btn ic" onclick="stp()" aria-label="Berhenti"></button></div>
+<nav id="nav"></nav>
+<script>
+const API='https://api.islamic.app',CDN='https://cdn.islamic.app/quran/audio',KEY='' /* opsional; terlihat publik di GitHub Pages */;
+const $=s=>document.querySelector(s),D={name:'',theme:'system',ar:30,tr:15,showTr:1,showTl:0,arF:0,laF:0,rec:'ar.alafasy',spd:1,rep:'off',auto:1,ntf:[]};
+let S={...D,...JSON.parse(localStorage.q||'{}')};const sv=()=>localStorage.q=JSON.stringify(S);
+const P={home:'<path d="M3 10.5 12 3l9 7.5V21H3z"/><path d="M9 21v-7h6v7"/>',quran:'<path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/>',sholat:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',kiblat:'<circle cx="12" cy="12" r="10"/><path d="m16.24 7.76-2.12 6.36-6.36 2.12 2.12-6.36z"/>',set:'<path d="M21 4h-7M10 4H3M21 12h-9M8 12H3M21 20h-5M12 20H3M14 2v4M8 10v4M16 18v4"/>',play:'<path d="M6 4l14 8-14 8z"/>',pause:'<path d="M6 4h4v16H6zM14 4h4v16h-4z"/>',stop:'<path d="M5 5h14v14H5z"/>',back:'<path d="M19 12H5M12 19l-7-7 7-7"/>',shuffle:'<path d="M16 3h5v5M4 20 21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/>',share:'<path d="M12 3v12M7 8l5-5 5 5M5 21h14"/>'};
+const I=Object.fromEntries(Object.entries(P).map(([k,v])=>[k,`<svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">${v}</svg>`]));
+
+const AF=[["Naskh","'Noto Naskh Arabic','Geeza Pro','Traditional Arabic',serif"],["Damascus","Damascus,'Geeza Pro',serif"],["Sans","'Al Nile','Noto Sans Arabic',sans-serif"]],LF=[["Sistem","system-ui,sans-serif"],["Serif","Georgia,serif"],["Rounded","ui-rounded,'Trebuchet MS',sans-serif"]];
+const REC=[["ar.alafasy","Mishary Alafasy"],["ar.abdurrahmaansudais","As-Sudais"],["ar.saoodshuraym","Saud Ash-Shuraim"],["ar.mahermuaiqly","Maher Al-Muaiqly"],["ar.abdulbasitmurattal","Abdul Basit"],["ar.husary","Al-Husary"],["ar.minshawi","Al-Minshawi"],["ar.hudhaify","Al-Hudhaify"],["ar.hanirifai","Hani Ar-Rifai"],["ar.shaatree","Ash-Shaatree"],["ar.ahmedajamy","Al-Ajamy"],["ar.abdullahbasfar","Basfar"]];
+const Q=[["Allah tidak membebani seseorang melainkan sesuai dengan kesanggupannya.","QS. Al-Baqarah: 286","Al-Qur'an"],["Karena sesungguhnya sesudah kesulitan itu ada kemudahan.","QS. Al-Insyirah: 5","Al-Qur'an"],["Ingatlah, hanya dengan mengingat Allah hati menjadi tenteram.","QS. Ar-Ra'd: 28","Al-Qur'an"],["Maka ingatlah kepada-Ku, niscaya Aku ingat kepadamu.","QS. Al-Baqarah: 152","Al-Qur'an"],["Sesungguhnya setiap amalan tergantung pada niatnya.","HR. Bukhari & Muslim","Hadis"],["Barangsiapa beriman kepada Allah dan hari akhir, hendaklah ia berkata baik atau diam.","HR. Bukhari & Muslim","Hadis"],["Senyummu di hadapan saudaramu adalah sedekah.","HR. Tirmidzi","Hadis"],["Permudahlah dan jangan mempersulit, berilah kabar gembira dan jangan membuat orang lari.","HR. Bukhari & Muslim","Hadis"]];
+function rng(a){return()=>{a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+function daily(){const d=Math.floor((Date.now()-new Date().getTimezoneOffset()*6e4)/864e5),n=Q.length,r=rng(Math.floor(d/n)),a=[...Q];for(let i=n-1;i>0;i--){const j=Math.floor(r()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a[d%n]}
+let HQ=null;const hq=()=>HQ||(HQ=daily());
+function theme(){document.documentElement.dataset.t=S.theme=='system'?(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'):S.theme}
+async function api(p,q={}){const u=new URL(API+p);for(const k in q)u.searchParams.set(k,q[k]);const r=await fetch(u,{headers:KEY?{'X-Api-Key':KEY}:{}});if(!r.ok)throw Error('Server '+r.status);return(await r.json()).data}
+let TR;async function trs(){if(TR)return TR;const l=(await api('/v1/resources/translations',{iso_code:'id'})).translations,pl=l.filter(x=>!/translit/i.test(x.slug));let t=l.find(x=>/translit/i.test(x.slug));if(!t)try{t=(await api('/v1/resources/translations',{iso_code:'en'})).translations.find(x=>/translit/i.test(x.slug))}catch{}return TR={a:pl.find(x=>/ministry|kemenag/.test(x.slug))||pl[0],t}}
+async function verses(path,pp){let r={a:null,t:null};try{r=await trs()}catch{}const sl=[r.a,r.t].filter(Boolean).map(x=>x.slug).join(','),out=[];let pg=1;
+while(pg<=40){const q={fields:'text_uthmani',page:pg};if(pp)q.per_page=pp;if(sl)q.translations=sl;const d=await api(path,q);
+for(const v of d.verses){const[s,n]=v.verse_key.split(':').map(Number);let tr='',tl='';for(const t of v.translations||[]){const x=(t.text||'').replace(/<sup[^>]*>.*?<\/sup>/g,'').replace(/<[^>]+>/g,'').trim(),id=String(t.resource_id);
+if(r.t&&id==String(r.t.id))tl=x;else if(r.a&&id==String(r.a.id))tr=x;else if(!tr&&r.a)tr=x;else tl=x}
+out.push({id:v.id,s,n,ar:v.text_uthmani||'',tr,tl})}
+const p=d.pagination;if(p&&p.next_page)pg=p.next_page;else if(p&&p.total_pages>pg)pg++;else break}return out}
+let tab='home',SUR=[],CUR=null,AY=[];
+const TABS=[['home','Beranda'],['quran',"Al-Qur'an"],['sholat','Sholat'],['kiblat','Kiblat'],['set','Atur']];
+function go(t){tab=t;CUR=null;$('#nav').innerHTML=TABS.map(x=>`<button class="${x[0]==tab?'on':''}" onclick="go('${x[0]}')">${I[x[0]]}<span>${x[1]}</span></button>`).join('');$('#bar').style.display=au.src&&tab=='quran'?'flex':'none';$('#v').className=t=='home'?'h':'';scrollTo(0,0);({home,quran,sholat,kiblat,set}[t])()}
+const ge=()=>{const h=new Date().getHours();return h<4?'Selamat malam':h<11?'Selamat pagi':h<15?'Selamat siang':h<18?'Selamat sore':'Selamat malam'};
+function hikmah(){const q=hq();return`<section class="qt"><p class="lb">Hikmah hari ini, ${q[2]}</p><blockquote>${q[0]}</blockquote><p class="mut" style="margin:0 0 16px">${q[1]}</p><div class="row" style="justify-content:flex-start"><button class="btn" onclick="rq()">${I.shuffle}Acak</button><button class="btn" onclick="shq()">${I.share}Bagikan</button></div></section>`}
+function rq(){HQ=Q[Math.floor(Math.random()*Q.length)];home()}
+function shq(){const q=hq(),t=`“${q[0]}” — ${q[1]}`;navigator.share?navigator.share({text:t}):navigator.clipboard.writeText(t)}
+function home(){const hj=new Intl.DateTimeFormat('id-u-ca-islamic-umalqura',{dateStyle:'long'}).format(),gr=new Intl.DateTimeFormat('id',{dateStyle:'full'}).format();
+$('#v').innerHTML=`<header class="hero"><p class="lb">${gr}<br>${hj}</p><h1>Assalamu&shy;'alaikum</h1><p class="sub">${S.name?S.name+', ':''}${ge().toLowerCase()}.</p><div id="npc">Memuat jadwal…</div></header>${hikmah()}
+<div class="bento"><a class="b1" onclick="go('quran')">${I.quran}<span><b>Al-Qur'an</b><small>114 surah dan 30 juz, dengan audio per ayat dari 12 qori.</small></span></a><a onclick="go('sholat')"><b>Sholat</b><small>Jadwal 5 waktu dan pengingat.</small></a><a onclick="go('kiblat')"><b>Kiblat</b><small>Kompas ke Ka'bah.</small></a></div>`;pt().then(tick)}
+let PT=null;const PN={Fajr:'Subuh',Dhuhr:'Zuhur',Asr:'Asar',Maghrib:'Magrib',Isha:'Isya'};
+function pos(){return new Promise(r=>navigator.geolocation?navigator.geolocation.getCurrentPosition(p=>r(p.coords),()=>r({latitude:-6.2088,longitude:106.8456}),{timeout:8000}):r({latitude:-6.2088,longitude:106.8456}))}
+async function pt(){if(PT)return PT;const c=await pos(),d=new Date(),f=`${String(d.getDate()).padStart(2,0)}-${String(d.getMonth()+1).padStart(2,0)}-${d.getFullYear()}`;
+try{const t=(await api('/v1/timings/'+f,{latitude:c.latitude,longitude:c.longitude,timezone:Intl.DateTimeFormat().resolvedOptions().timeZone})).timings;PT=Object.keys(PN).map(k=>{const[h,m]=t[k].slice(0,5).split(':'),x=new Date();x.setHours(+h,+m,0,0);return[k,x]});sched();return PT}catch(e){return null}}
+function sched(){if(!PT||Notification.permission!='granted')return;PT.forEach(([k,d])=>{const w=d-Date.now();if(w>0&&S.ntf.includes(k))setTimeout(()=>new Notification('Waktu '+PN[k],{body:'Sudah masuk waktu '+PN[k]+'. Yuk sholat.',icon:'icons/icon-192.png'}),w)})}
+const f2=s=>[s/3600|0,s%3600/60|0,s%60].map(x=>String(x).padStart(2,0)).join(':');
+function tick(){clearInterval(window.ti);const run=()=>{const e=$('#npc'),w=$('#cdw');if(!PT){e&&(e.textContent='Jadwal belum tersedia');return}const n=PT.find(x=>x[1]>Date.now());const c=n?`<div class="cd"><span>${PN[n[0]]} dalam</span><b>${f2(Math.floor((n[1]-Date.now())/1e3))}</b></div>`:'<div class="cd"><span>Semua waktu hari ini sudah lewat</span></div>',tb=`<table class="tb"><tr>${PT.map(x=>`<th>${PN[x[0]]}</th>`).join('')}</tr><tr>${PT.map(x=>`<td class="${n&&n[0]==x[0]?'nx':''}">${x[1].toLocaleTimeString('id',{hour:'2-digit',minute:'2-digit'})}</td>`).join('')}</tr></table>`;if(e)e.innerHTML=c+tb;if(w)w.innerHTML=c};run();window.ti=setInterval(run,1000)}
+async function sholat(){$('#v').innerHTML=`<h1>Waktu Sholat</h1><div class="card" id="cdw">Memuat…</div><div class="card" id="pl"></div><p class="mut">Pengingat hanya berbunyi saat web app terbuka (batasan web). Aktifkan notifikasi saat diminta.</p>`;
+const t=await pt();if(!t){$('#pl').innerHTML='<div class="err">Gagal memuat jadwal (cek internet/CORS API).</div>';return}tick();
+$('#pl').innerHTML=t.map(([k,d])=>`<div class="pr"><b>${PN[k]}</b><span>${d.toLocaleTimeString('id',{hour:'2-digit',minute:'2-digit'})}</span><input type="checkbox" ${S.ntf.includes(k)?'checked':''} onchange="nt('${k}',this.checked)"></div>`).join('')}
+async function nt(k,on){if(on&&Notification.permission!='granted'&&await Notification.requestPermission()!='granted')return sholat();S.ntf=S.ntf.filter(x=>x!=k);if(on)S.ntf.push(k);sv();sched()}
+async function quran(){$('#v').innerHTML=`<h1>Al-Qur'an</h1><div class="seg" id="sg"><button class="on" onclick="lst(0)">Surah</button><button onclick="lst(1)">Juz</button></div><input type="text" id="sq" placeholder="Cari surah" oninput="lst(window.jz)" style="margin:12px 0"><div id="ls">Memuat…</div>`;
+if(!SUR.length)try{SUR=(await api('/v1/chapters',{language:'id'})).chapters}catch(e){$('#ls').innerHTML='<div class="err">Gagal memuat: '+e.message+'</div>';return}lst(0)}
+function lst(j){window.jz=j;const q=($('#sq').value||'').toLowerCase();document.querySelectorAll('#sg button').forEach((b,i)=>b.className=i==j?'on':'');$('#sq').style.display=j?'none':'';
+$('#ls').innerHTML=j?[...Array(30)].map((_,i)=>`<div class="li" onclick="op('juz',${i+1})"><span class="num">${i+1}</span><b>Juz ${i+1}</b></div>`).join(''):SUR.filter(s=>(s.name_simple+(s.translated_name?.name||'')).toLowerCase().includes(q)).map(s=>`<div class="li" onclick="op('s',${s.id})"><span class="num">${s.id}</span><div style="flex:1"><b>${s.name_simple}</b><div class="mut">${s.translated_name?.name||''} • ${s.verses_count} ayat</div></div><span class="ara">${s.name_arabic}</span></div>`).join('')}
+async function op(t,n){CUR=[t,n];$('#v').innerHTML=`<button class="btn" onclick="quran()">${I.back}Kembali</button><h1 style="margin-top:28px">${t=='s'?SUR.find(x=>x.id==n).name_simple:'Juz '+n}</h1><div id="ay">Memuat…</div>`;
+try{AY=await verses(t=='s'?'/v1/verses/by_chapter/'+n:'/v1/verses/by_juz/'+n,t=='s'?0:50)}catch(e){$('#ay').innerHTML='<div class="err">Gagal memuat: '+e.message+'</div>';return}rd()}
+function rd(){const af=AF[S.arF][1],lf=LF[S.laF][1];$('#ay').innerHTML=AY.map((a,i)=>`${a.n==1&&a.s!=1&&a.s!=9?`<div class="bis"><div class="ar" style="text-align:center;margin:0 0 8px;font:${S.ar+2}px ${af}">بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</div>${S.showTr?`<div class="mut" style="font:${S.tr}px ${lf}">Dengan nama Allah Yang Maha Pengasih, Maha Penyayang.</div>`:''}</div>`:''}
+<div class="ay" id="a${a.id}"><div class="gt"><span class="num">${CUR[0]=='juz'?a.s+':':''}${a.n}</span><button class="btn ic" onclick="pl(${i})" aria-label="Putar ayat ${a.n}">${I.play}</button></div><div><div class="ar" style="font:${S.ar}px/1.9 ${af}">${a.ar}</div>${S.showTl&&a.tl?`<div class="tl" style="font:italic ${S.tr}px ${lf}">${a.tl}</div>`:''}${S.showTr&&a.tr?`<div class="mut" style="font:${S.tr}px ${lf};margin-top:6px">${a.tr}</div>`:''}</div></div>`).join('')}
+const au=new Audio();let qi=0;au.onended=()=>{if(S.rep=='ayah')return pl(qi);if(qi+1<AY.length)pl(qi+1);else if(S.rep=='all')pl(0);else stp()};au.onplay=au.onpause=()=>$('#pp').innerHTML=au.paused?I.play:I.pause;
+function pl(i){qi=i;const a=AY[i];au.src=`${CDN}/${S.rec}/${a.id}.mp3`;au.defaultPlaybackRate=S.spd;au.play();$('#bar').style.display='flex';$('#bl').textContent=`QS ${a.s}:${a.n} • ${REC.find(r=>r[0]==S.rec)[1]}`;document.querySelectorAll('.ay.on').forEach(e=>e.classList.remove('on'));const e=$('#a'+a.id);if(e){e.classList.add('on');S.auto&&e.scrollIntoView({behavior:'smooth',block:'center'})}}
+function tgl(){au.paused?au.play():au.pause()}function stp(){au.pause();au.removeAttribute('src');$('#bar').style.display='none';document.querySelectorAll('.ay.on').forEach(e=>e.classList.remove('on'))}
+let H=0,QB=null;const qbf=(la,lo)=>{const r=Math.PI/180,k=[21.4225*r,39.8262*r],p=la*r,d=k[1]-lo*r;return(Math.atan2(Math.sin(d)*Math.cos(k[0]),Math.cos(p)*Math.sin(k[0])-Math.sin(p)*Math.cos(k[0])*Math.cos(d))/r+360)%360};
+async function kiblat(){$('#v').innerHTML=`<h1>Arah Kiblat</h1><div id="cp"><div id="ndl"></div></div><p id="kt" style="text-align:center;font-weight:600">Mencari lokasi…</p><p class="mut" style="text-align:center">Jauhkan dari benda logam/magnet. Kalibrasi gerakan angka 8 jika kurang akurat.</p><div style="text-align:center"><button class="btn p" onclick="cmp()">Aktifkan kompas</button></div>`;const c=await pos();QB=qbf(c.latitude,c.longitude);$('#kt').textContent='Arah kiblat: '+Math.round(QB)+'° dari utara';nd()}
+function nd(){if(QB==null||!$('#ndl'))return;let d=((QB-H)%360+540)%360-180;$('#ndl').style.transform=`rotate(${d}deg)`;$('#cp').className=Math.abs(d)<3?'ok':'';if(Math.abs(d)<3)$('#kt').textContent='Kamu menghadap kiblat ✓'}
+async function cmp(){if(window.DeviceOrientationEvent&&DeviceOrientationEvent.requestPermission&&await DeviceOrientationEvent.requestPermission()!='granted')return;const h=e=>{H=e.webkitCompassHeading??(e.alpha!=null?360-e.alpha:0);nd()};addEventListener('deviceorientationabsolute',h,true);addEventListener('deviceorientation',e=>{if(e.webkitCompassHeading!=null)h(e)},true)}
+function set(){const o=(a,v)=>a.map((x,i)=>`<option value="${Array.isArray(x)?x[0]:i}" ${(Array.isArray(x)?x[0]:i)==v?'selected':''}>${Array.isArray(x)?x[1]||x[0]:x}</option>`).join('');
+const rg=(k,mn,mx,l)=>`<div class="row"><span>${l}</span><span class="mut" id="v_${k}">${S[k]}</span></div><input type="range" min="${mn}" max="${mx}" value="${S[k]}" oninput="ss('${k}',+this.value)">`;
+$('#v').innerHTML=`<h1>Pengaturan</h1><div class="card"><h2>Profil</h2><input type="text" placeholder="Nama panggilan" value="${S.name}" oninput="ss('name',this.value,1)"></div>
+<div class="card"><h2>Tampilan</h2><select onchange="ss('theme',this.value,1);theme()">${o([['system','Ikuti sistem'],['light','Terang'],['dark','Gelap']],S.theme)}</select></div>
+<div class="card"><h2>Bacaan</h2><div id="pv"></div>${rg('ar',22,52,'Ukuran teks Arab')}${rg('tr',12,26,'Ukuran terjemahan')}<p>Font Arab<select onchange="ss('arF',+this.value)">${o(AF.map((x,i)=>[i,x[0]]),S.arF)}</select></p><p>Font terjemahan<select onchange="ss('laF',+this.value)">${o(LF.map((x,i)=>[i,x[0]]),S.laF)}</select></p>
+<label class="row"><span>Tampilkan terjemahan</span><input type="checkbox" ${S.showTr?'checked':''} onchange="ss('showTr',+this.checked)"></label><label class="row"><span>Tampilkan transliterasi</span><input type="checkbox" ${S.showTl?'checked':''} onchange="ss('showTl',+this.checked)"></label><label class="row"><span>Gulir otomatis saat audio</span><input type="checkbox" ${S.auto?'checked':''} onchange="ss('auto',+this.checked)"></label></div>
+<div class="card"><h2>Audio</h2><p>Qori<select onchange="ss('rec',this.value,1)">${o(REC,S.rec)}</select></p><p>Kecepatan<select onchange="ss('spd',+this.value,1);au.defaultPlaybackRate=au.playbackRate=S.spd">${o([[.75,'0.75×'],[1,'1×'],[1.25,'1.25×'],[1.5,'1.5×']],S.spd)}</select></p><p>Ulangi<select onchange="ss('rep',this.value,1)">${o([['off','Tidak'],['ayah','Satu ayat'],['all','Semua']],S.rep)}</select></p></div>
+<p class="mut">Sumber data: islamic.app API</p>`;pv()}
+function ss(k,v,q){S[k]=v;sv();const e=$('#v_'+k);if(e)e.textContent=v;if(!q)pv()}
+function pv(){const e=$('#pv');if(e)e.innerHTML=`<div class="ay"><div class="ar" style="font:${S.ar}px/1.9 ${AF[S.arF][1]}">ٱلْحَمْدُ لِلَّهِ رَبِّ ٱلْعَـٰلَمِينَ</div>${S.showTl?`<div class="tl" style="font:italic ${S.tr}px ${LF[S.laF][1]}">Al-ḥamdu lillāhi rabbil-ʿālamīn</div>`:''}${S.showTr?`<div class="mut" style="font:${S.tr}px ${LF[S.laF][1]}">Segala puji bagi Allah, Tuhan seluruh alam.</div>`:''}</div>`}
+$('#pp').innerHTML=I.play;$('#bar button:last-of-type').innerHTML=I.stop;theme();matchMedia('(prefers-color-scheme:dark)').addEventListener('change',theme);go('home');
+if('serviceWorker'in navigator)addEventListener('load',()=>navigator.serviceWorker.register('sw.js'));
+</script></body></html>
