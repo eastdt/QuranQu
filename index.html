@@ -49,7 +49,7 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid 
 <div id="bar"><button class="btn p ic" id="pp" onclick="tgl()" aria-label="Putar atau jeda"></button><span id="bl" class="mut" style="flex:1"></span><button class="btn ic" onclick="stp()" aria-label="Berhenti"></button></div>
 <nav id="nav"></nav>
 <script>
-const API='https://api.islamic.app',CDN='https://cdn.islamic.app/quran/audio',KEY='' /* opsional; terlihat publik di GitHub Pages */;
+const API='https://api.islamic.app',CDN='https://cdn.islamic.app/quran/audio',KEY='VFZMuAKAh6YquEmuqQeh0A144NLNY9zRRrf5NJBdg5dlqLbL' /* opsional; terlihat publik di GitHub Pages */;
 const $=s=>document.querySelector(s),D={name:'',theme:'system',ar:30,tr:15,showTr:1,showTl:0,arF:0,laF:0,rec:'ar.alafasy',spd:1,rep:'off',auto:1,ntf:[]};
 let S={...D,...JSON.parse(localStorage.q||'{}')};const sv=()=>localStorage.q=JSON.stringify(S);
 const P={home:'<path d="M3 10.5 12 3l9 7.5V21H3z"/><path d="M9 21v-7h6v7"/>',quran:'<path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/>',sholat:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',kalender:'<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>',set:'<path d="M21 4h-7M10 4H3M21 12h-9M8 12H3M21 20h-5M12 20H3M14 2v4M8 10v4M16 18v4"/>',play:'<path d="M6 4l14 8-14 8z"/>',pause:'<path d="M6 4h4v16H6zM14 4h4v16h-4z"/>',stop:'<path d="M5 5h14v14H5z"/>',back:'<path d="M19 12H5M12 19l-7-7 7-7"/>',shuffle:'<path d="M16 3h5v5M4 20 21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/>',share:'<path d="M12 3v12M7 8l5-5 5 5M5 21h14"/>'};
